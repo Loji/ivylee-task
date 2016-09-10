@@ -1,0 +1,14 @@
+<section class="list-app">
+  <section class="input"  (keyup.enter)="addListItem()">
+    <input placeholder="Type task name..." [(ngModel)]="newListItem.title">
+    <textarea [(ngModel)]="newListItem.description"></textarea>
+  </section>
+  <section class="list" *ngIf="listItems.length > 0">
+    <ul>
+      <li *ngFor="let listItem of listItems" [class.completed]="listItem.completed">
+        <h4>{{listItem.title}}</h4>
+        <desc>{{listItem.description}}</desc>
+      </li>
+    </ul>
+  </section>
+</section>
