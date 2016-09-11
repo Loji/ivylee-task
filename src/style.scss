@@ -1,8 +1,9 @@
-
-$main-color: rgb(100%, 51.3%, 5%);
+$body-color: #FFCC00;
+$main-color: #52514E;
 $text-color: darken(desaturate($main-color, 75%), 35%);
-$tasks-bg: lighten(desaturate($main-color, 75%), 45%);
-$gray-main: rgb(73.4%, 73.4%, 73.4%);
+$tasks-bg: #fff;
+$task-color: $main-color;
+$gray-main: #bbb;
 
 
 * {
@@ -10,7 +11,18 @@ $gray-main: rgb(73.4%, 73.4%, 73.4%);
 }
 
 body {
+    background-color: $body-color;
     color: $text-color;
+    font-family: "Ubuntu", // Safari for OS X and iOS (San Francisco)
+    -apple-system, // Chrome for OS X (San Francisco)
+    BlinkMacSystemFont, // Windows
+    "Segoe UI", // Android
+    "Roboto", // Linux
+    "Oxygen", // KDE
+    "Ubuntu", "Cantarell", // GNOME
+    "Fira Sans", // Older Android
+    "Droid Sans", // Basic web fallback
+    "Helvetica Neue", Arial, sans-serif;
 }
 
 h4 {
@@ -22,35 +34,44 @@ h4 {
     }
 }
 
-.list-app {
+.content {
     max-width: 700px;
     margin: 0 auto;
     padding: 2em;
-    textarea, 
-    input {
-        width: 100%;
-        border: 1px solid $main-color;
+}
+
+section {
+    &.input {
         background: #fff;
-        border-radius: 2px;
-        margin-bottom: 1em;
-        padding: 0.5em 1em;
-        &:focus {
-            border-color: darken $main-color;
-            outline: none; 
-            box-shadow: none;
-        }
     }
-    ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        li {
-            margin: 0.3em 0;
-            background: $tasks-bg;
-            border-bottom: 3px solid darken($tasks-bg, 10);
-            border-radius: 4px;
-            padding: 1em 1em; 
-        }
+}
+
+textarea,
+input {
+    width: 100%;
+    border: 3px solid $main-color;
+    background: transparent;
+    border-radius: 5px;
+    margin-top: 1em;
+    padding: 0.5em 1em;
+    &:focus {
+        border-color: darken($main-color, 15);
+        outline: none;
+        box-shadow: none;
     }
- 
-} 
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    li {
+        border: 3px solid $main-color;
+        color: $task-color;
+        margin: 0 0 1em;
+        background: $tasks-bg;
+        // border-bottom: 3px solid darken($tasks-bg, 10);
+        border-radius: 4px;
+        padding: 1em 1em;
+    }
+}
