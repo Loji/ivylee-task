@@ -5,8 +5,8 @@
   </section>
   <section class="list" *ngIf="listItems.length > 0">
     <ul>
-      <li *ngFor="let listItem of listItems" [class.completed]="listItem.completed">
-        <h4>{{listItem.title}}</h4>
+      <li *ngFor="let listItem of listItems" @addListItem="added" [class.completed]="listItem.completed">
+        <h4>{{listItem.title}} <small>{{listItem.added_date | date : "d.M.y H:m"}}</small></h4>
         <desc>{{listItem.description}}</desc>
       </li>
     </ul>
