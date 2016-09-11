@@ -10,9 +10,12 @@
   {{/unless}}
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css">
+  <link rel="stylesheet" href="style.css">
+
 </head>
 <body>
-  <app-root>Loading...</app-root>
+  <list-app>Loading...</list-app>
   
     {{#each scripts.polyfills}}
     <script src="{{.}}"></script>
@@ -22,6 +25,5 @@
         System.import('main');
       }).catch(console.error.bind(console));
     </script>
-  
 </body>
 </html>
