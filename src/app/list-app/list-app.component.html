@@ -1,14 +1,21 @@
 <section class="list-app">
   <section class="input"  (keyup.enter)="addListItem()">
-    <input placeholder="Type task name..." [(ngModel)]="newListItem.title">
-    <textarea [(ngModel)]="newListItem.description"></textarea>
+    <div class="content">
+      <div class="description">
+        <h1>Ivy Lee Task List</h1>
+      </div>
+      <input placeholder="Type task name..." [(ngModel)]="newListItem.title">
+      <textarea placeholder="Type task description..." [(ngModel)]="newListItem.description"></textarea>
+    </div>
   </section>
   <section class="list" *ngIf="listItems.length > 0">
-    <ul>
-      <li *ngFor="let listItem of listItems" @addListItem="added" [class.completed]="listItem.completed">
-        <h4>{{listItem.title}} <small>{{listItem.added_date | date : "d.M.y H:m"}}</small></h4>
-        <desc>{{listItem.description}}</desc>
-      </li>
-    </ul>
+    <div class="content">
+      <ul>
+        <li *ngFor="let listItem of listItems" @addListItem="added" [class.completed]="listItem.completed">
+          <h4>{{listItem.title}} <small>{{listItem.added_date | date : "d.M.y H:m"}}</small></h4>
+          <desc>{{listItem.description}}</desc>
+        </li>
+      </ul>
+    </div>
   </section>
 </section>
