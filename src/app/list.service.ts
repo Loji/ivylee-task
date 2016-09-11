@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, provide } from '@angular/core';
 import { ListItem } from './list-item';
 
 @Injectable()
@@ -8,8 +8,13 @@ export class ListService {
 
   listItems: ListItem[] = [];
 
-  constructor() { 
+  public localStorage: any;
 
+  constructor() { 
+    this.localStorage = localStorage;
+    if(this.localStorage['list']) {
+      this.listItems = JSON.parse(this.localStorage['list']);
+    } 
   }
 
   addListItem(listItem: ListItem): ListService {
@@ -17,6 +22,8 @@ export class ListService {
       listItem.id = ++this.lastId;
     }
     this.listItems.push(listItem);
+
+    this.localStorage['list'] = JSON.stringify(this.listItems);
 
     return this;
   }
@@ -38,3 +45,7 @@ export class ListService {
   }
 
 }
+
+export const LOCAL_STORAGE_PROVIDERS:any[] = [
+    provide(ListService, {useClass: ListService})
+];
