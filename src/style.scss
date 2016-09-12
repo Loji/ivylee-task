@@ -1,8 +1,14 @@
-$body-color: #FFCC00;
-$main-color: #52514E;
-$text-color: darken(desaturate($main-color, 75%), 35%);
-$tasks-bg: #fff;
-$task-color: $main-color;
+$body-color: #A2B09A;
+$main-color: #AB936B;
+
+$input-border: #AB936B;
+$input-bg: #AB936B;
+$input-color: #fafafa;
+
+$text-color: #998E7D;
+$tasks-bg: #AB936B;
+$task-border: #AB936B;
+$task-color: #f0f0f0;
 $gray-main: #bbb;
 
 
@@ -49,13 +55,16 @@ section {
 textarea,
 input {
     width: 100%;
-    border: 3px solid $main-color;
-    background: transparent;
+    border: none;
+    background: $input-bg;
     border-radius: 5px;
     margin-top: 1em;
     padding: 0.5em 1em;
+    transition: all 0.3s ease; 
+    color: $input-color;
     &:focus {
-        border-color: darken($main-color, 15);
+        background: darken($input-bg, 15);
+        // border-color: darken($input-border, 15);
         outline: none;
         box-shadow: none;
     }
@@ -66,7 +75,6 @@ ul {
     padding: 0;
     margin: 0;
     li {
-        border: 3px solid $main-color;
         color: $task-color;
         margin: 0 0 1em;
         background: $tasks-bg;
@@ -74,4 +82,29 @@ ul {
         border-radius: 4px;
         padding: 1em 1em;
     }
+}
+
+.dnd-drag-start {
+    -moz-transform:scale(0.8);
+    -webkit-transform:scale(0.8);
+    transform:scale(0.8);
+    opacity:0.7;
+    border: 2px dashed #000;
+}
+
+.dnd-drag-enter {
+    opacity:0.7;
+    border: 2px dashed #000;
+}
+
+.dnd-drag-over {
+    border: 2px dashed #000;
+}
+
+.dnd-sortable-drag {
+  -moz-transform:scale(0.9);
+  -webkit-transform:scale(0.9);
+  transform:scale(0.9);
+  opacity:0.7;
+  border: 1px dashed #000;
 }
