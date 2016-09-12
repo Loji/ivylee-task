@@ -9,11 +9,16 @@
  **********************************************************************************************/
 /** Map relative paths to URLs. */
 const map: any = {
+  'ng2-dnd': 'vendor/ng2-dnd',
+
 };
 
 /** User packages configuration. */
 const packages: any = {
+  'ng2-dnd': { main: 'index.js', defaultExtension: 'js' },
+
 };
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 /***********************************************************************************************
@@ -32,6 +37,7 @@ const barrels: string[] = [
 
   // Thirdparty barrels.
   'rxjs',
+  'ng2-dnd',
 
   // App specific barrels.
   'app',
@@ -42,8 +48,12 @@ const barrels: string[] = [
 
 const cliSystemConfigPackages: any = {};
 barrels.forEach((barrelName: string) => {
-  cliSystemConfigPackages[barrelName] = { main: 'index' };
-});
+//  if(barrelName=='ng2-dnd'){
+        // cliSystemConfigPackages[barrelName] = { main: 'ng2-dnd' };
+    // }else{
+        cliSystemConfigPackages[barrelName] = { main: 'index' };
+    // }
+  });
 
 /** Type declaration for ambient System. */
 declare var System: any;
@@ -53,9 +63,10 @@ System.config({
   map: {
     '@angular': 'vendor/@angular',
     'rxjs': 'vendor/rxjs',
-    'main': 'main.js'
+    'main': 'main.js',
+    'ng2-dnd': 'vendor/ng2-dnd'
   },
-  packages: cliSystemConfigPackages
+  packages: cliSystemConfigPackages, 
 });
 
 // Apply the user's configuration.
