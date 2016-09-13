@@ -2,7 +2,7 @@ export class ListItem {
     id: number;
     title: string = '';
     description: string = '';
-    complete: boolean = false;
+    completed: boolean = false;
     deleted: boolean = false;    
     order: number;
     added_date: Date;

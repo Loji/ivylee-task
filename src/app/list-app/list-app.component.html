@@ -10,10 +10,14 @@
   </section>
   <section class="list" *ngIf="listItems.length > 0">
     <div class="content">
-      <ul>
-        <li *ngFor="let listItem of listItems" @addListItem="added" [class.completed]="listItem.completed">
-          <h4>{{listItem.title}} <small>{{listItem.added_date | date : "d.M.y H:m"}}</small></h4>
+      <ul dnd-sortable-container [sortableData]="listItems">
+        <li *ngFor="let listItem of (listItems | orderBy)" [class.completed]="listItem.completed" dnd-sortable [sortableIndex]="order">
+          <h4>{{listItem.order}} - {{listItem.id}} {{listItem.title}} <small>{{listItem.added_date | date : "d.M.y H:m"}}</small></h4>
           <desc>{{listItem.description}}</desc>
+          <div class="actions">
+            <div class="grab">chwyć</div>
+            <div (click)="toggleListItemCompleted(listItem)"><i class="fa fa-check" aria-hidden="true"></i></div>
+          </div>
         </li>
       </ul>
     </div>

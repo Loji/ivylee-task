@@ -11,6 +11,7 @@ $task-border: #AB936B;
 $task-color: #f0f0f0;
 $gray-main: #bbb;
 
+$task-complete-bg: #00ff00;
 
 * {
     box-sizing: border-box;
@@ -81,6 +82,10 @@ ul {
         // border-bottom: 3px solid darken($tasks-bg, 10);
         border-radius: 4px;
         padding: 1em 1em;
+        transition: all 0.3s ease;
+        &.completed {
+            background: $task-complete-bg;
+        }
     }
 }
 
