@@ -37,11 +37,7 @@ export class ListService {
   }
 
   deleteItem(listItem: ListItem): ListService {
-    if(listItem.deleted) {
-      this.listItems = this.listItems.filter(el => el.id != listItem.id);
-    } else {
-      listItem.deleted = true;
-    } 
+    this.listItems = this.listItems.filter(el => el.id != listItem.id);
 
     return this;
   }
@@ -68,11 +64,17 @@ export class ListService {
     }
     Object.assign(listItem, values);
  
+    this.saveToLocalstorage();
+
     return listItem;
   }
 
   toggleCompleted(listItem: ListItem) {
-    return this.updateById(listItem.id, {completed: !listItem.completed});
+    return this.updateById(listItem.id, {completed: !listItem.completed, completion_date: new Date()});
+  }
+
+  toggleDeleted(listItem: ListItem) {
+    return this.updateById(listItem.id, {deleted: !listItem.deleted});
   }
 
 }

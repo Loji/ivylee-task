@@ -43,18 +43,17 @@ export class ListAppComponent implements OnInit {
   listItems: Array<ListItem> = [];
 
   constructor(private listService: ListService) { 
-       this.listItems = listService.getAllListItems();
-       
+    // this.listService.listItems.subscribe(listItem => !listItem.deleted);
+    this.listItems = this.listService.getAllListItems();
+
   }
 
   ngOnInit() {
-    
+    // this.listItems = this.listService.listItems$;
   }
 
   // get listItems() {
-  //   return this.listService.getAllListItems().filter(function(el) {
-  //     return !el.completed;
-  //   });
+  //   return this.listService.getAllListItems().filter(listItem => !listItem.deleted);
   // }
 
   addListItem() {
@@ -66,6 +65,14 @@ export class ListAppComponent implements OnInit {
 
   toggleListItemCompleted(listItem: ListItem) {
     this.listService.toggleCompleted(listItem);
+  }
+
+  toggleListItemDeleted(listItem: ListItem) {
+    this.listService.toggleDeleted(listItem);
+  }
+
+  handleSort(listItem: ListItem) {
+    console.log(listItem);
   }
 
 }

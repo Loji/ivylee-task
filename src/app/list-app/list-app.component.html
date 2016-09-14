@@ -11,12 +11,21 @@
   <section class="list" *ngIf="listItems.length > 0">
     <div class="content">
       <ul dnd-sortable-container [sortableData]="listItems">
-        <li *ngFor="let listItem of (listItems | orderBy)" [class.completed]="listItem.completed" dnd-sortable [sortableIndex]="order">
+        <li 
+            *ngFor="let listItem of (listItems | orderBy)" 
+            [class.completed]="listItem.completed" 
+            dnd-sortable 
+            [sortableIndex]="order">
           <h4>{{listItem.order}} - {{listItem.id}} {{listItem.title}} <small>{{listItem.added_date | date : "d.M.y H:m"}}</small></h4>
           <desc>{{listItem.description}}</desc>
           <div class="actions">
-            <div class="grab">chwyć</div>
-            <div (click)="toggleListItemCompleted(listItem)"><i class="fa fa-check" aria-hidden="true"></i></div>
+            <span class="grab">chwyć</span>
+            <span (click)="toggleListItemCompleted(listItem)">
+              <i class="fa" [class.fa-check]="!listItem.completed" [class.fa-times]="listItem.completed" aria-hidden="true"></i>
+            </span>
+            <span (click)="toggleListItemDeleted(listItem)">
+              <i class="fa fa-trash-o" aria-hidden="true"></i>
+            </span>
           </div>
         </li>
       </ul>

@@ -11,7 +11,7 @@ $task-border: #AB936B;
 $task-color: #f0f0f0;
 $gray-main: #bbb;
 
-$task-complete-bg: #00ff00;
+$task-complete-bg: #59a559;
 
 * {
     box-sizing: border-box;
@@ -83,8 +83,28 @@ ul {
         border-radius: 4px;
         padding: 1em 1em;
         transition: all 0.3s ease;
+        position: relative; 
+        overflow: hidden;
         &.completed {
             background: $task-complete-bg;
+        }
+        &:hover {
+            .actions {
+                opacity: 1; 
+                transform: translateY(0);
+            }
+        }
+        .actions {
+            position: absolute; 
+            top: 0; 
+            right: 0;
+            padding: 1.2em;
+            transition: all 0.3s ease; 
+            opacity: 0; 
+            transform: translateY(-100%);
+            > span {
+                cursor: pointer;
+            }
         }
     }
 }
