@@ -9,13 +9,14 @@
  **********************************************************************************************/
 /** Map relative paths to URLs. */
 const map: any = {
-  'ng2-dnd': 'vendor/ng2-dnd',
+  'ng2-dragula': 'vendor/ng2-dragula',
+  'dragula' : 'vendor/dragula/dist/dragula.js'
 
 };
 
 /** User packages configuration. */
 const packages: any = {
-  'ng2-dnd': { main: 'index.js', defaultExtension: 'js' },
+  'ng2-dragula': { main: 'ng2-dragula.js', format: 'cjs', defaultExtension: 'js' },
 
 };
 
@@ -37,7 +38,7 @@ const barrels: string[] = [
 
   // Thirdparty barrels.
   'rxjs',
-  'ng2-dnd',
+  'ng2-dragula',
 
   // App specific barrels.
   'app',
@@ -48,12 +49,8 @@ const barrels: string[] = [
 
 const cliSystemConfigPackages: any = {};
 barrels.forEach((barrelName: string) => {
-//  if(barrelName=='ng2-dnd'){
-        // cliSystemConfigPackages[barrelName] = { main: 'ng2-dnd' };
-    // }else{
-        cliSystemConfigPackages[barrelName] = { main: 'index' };
-    // }
-  });
+    cliSystemConfigPackages[barrelName] = { main: 'index' };
+});
 
 /** Type declaration for ambient System. */
 declare var System: any;
@@ -64,7 +61,7 @@ System.config({
     '@angular': 'vendor/@angular',
     'rxjs': 'vendor/rxjs',
     'main': 'main.js',
-    'ng2-dnd': 'vendor/ng2-dnd'
+    'ng2-dragula': 'vendor/ng2-dragula'
   },
   packages: cliSystemConfigPackages, 
 });

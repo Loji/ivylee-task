@@ -4,9 +4,9 @@
 
 /* global require, module */
 
-var Angular2App = require('angular-cli/lib/broccoli/angular2-app');
-var autoprefixer = require('autoprefixer');
-var postcss = require('broccoli-postcss');
+var Angular2App = require('angular-cli/lib/broccoli/angular2-app')
+var autoprefixer = require('autoprefixer')
+var postcss = require('broccoli-postcss')
 
 module.exports = function (defaults) {
   var app = new Angular2App(defaults, {
@@ -18,7 +18,8 @@ module.exports = function (defaults) {
       'reflect-metadata/**/*.+(ts|js|js.map)',
       'rxjs/**/*.+(js|js.map)',
       '@angular/**/*.+(js|js.map)',
-      'ng2-dnd/**/*.+(js|js.map)',
+      'ng2-dragula/**/*.js',
+      'dragula/dist/**/*.+(css|js|js.map)'
     ]
   })
 
@@ -32,6 +33,5 @@ module.exports = function (defaults) {
       }
     ]
   }
-  return postcss(app, cssOptions);
-
+  return postcss(app, cssOptions)
 }

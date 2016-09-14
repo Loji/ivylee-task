@@ -2,7 +2,7 @@ import { Component, OnInit, Pipe, transition, animate, style, state, trigger } f
 import { ListItem } from '../list-item';
 import { ListService } from '../list.service';
 import { OrderBy } from './order-by.pipe';
-import {DND_PROVIDERS, DND_DIRECTIVES} from 'ng2-dnd';
+import { DragulaService } from 'ng2-dragula/ng2-dragula';
 
 
 @Component({
@@ -10,8 +10,7 @@ import {DND_PROVIDERS, DND_DIRECTIVES} from 'ng2-dnd';
   selector: 'list-app',
   templateUrl: 'list-app.component.html',
   styleUrls: ['list-app.component.css'],
-  directives: [DND_DIRECTIVES],
-  providers: [ListService, DND_PROVIDERS],
+  providers: [ListService],
   pipes: [OrderBy],
   // animations: [
   //   trigger('addListItem', [
@@ -40,11 +39,11 @@ import {DND_PROVIDERS, DND_DIRECTIVES} from 'ng2-dnd';
 export class ListAppComponent implements OnInit {
   newListItem: ListItem = new ListItem();
 
-  listItems: Array<ListItem> = [];
+  // listItems: Array<ListItem> = [];
 
   constructor(private listService: ListService) { 
     // this.listService.listItems.subscribe(listItem => !listItem.deleted);
-    this.listItems = this.listService.getAllListItems();
+    // this.listItems = this.listService.getAllListItems();
 
   }
 
@@ -52,9 +51,9 @@ export class ListAppComponent implements OnInit {
     // this.listItems = this.listService.listItems$;
   }
 
-  // get listItems() {
-  //   return this.listService.getAllListItems().filter(listItem => !listItem.deleted);
-  // }
+  get listItems() {
+    return this.listService.getAllListItems().filter(listItem => !listItem.deleted);
+  }
 
   addListItem() {
     this.newListItem.added_date = new Date();
@@ -71,8 +70,8 @@ export class ListAppComponent implements OnInit {
     this.listService.toggleDeleted(listItem);
   }
 
-  handleSort(listItem: ListItem) {
-    console.log(listItem);
+  handleSort(event: any) {
+    console.log(event);
   }
 
 }
