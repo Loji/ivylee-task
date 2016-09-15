@@ -1,4 +1,4 @@
-import { Injectable, provide } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { ListItem } from './list-item';
 
 @Injectable()
@@ -79,6 +79,6 @@ export class ListService {
 
 }
 
-export const LOCAL_STORAGE_PROVIDERS:any[] = [
-    provide(ListService, {useClass: ListService})
-];
+// export const LOCAL_STORAGE_PROVIDERS:any[] = [
+//     provide(ListService, {useClass: ListService})
+// ];

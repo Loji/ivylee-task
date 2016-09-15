@@ -1,18 +1,16 @@
 import { Component, OnInit, OnDestroy, Pipe, transition, animate, style, state, trigger } from '@angular/core';
-import { ActivatedRoute, ROUTER_DIRECTIVES } from '@angular/router';
 import { ListItem } from '../list-item';
 import { ListService } from '../list.service';
 import { OrderBy } from './order-by.pipe';
 
 
 @Component({
-  moduleId: module.id,
-  selector: 'list-app',
+  selector: 'app-root',
   templateUrl: 'list-app.component.html',
-  styleUrls: ['list-app.component.css'],
-  providers: [ListService, ActivatedRoute],
-  pipes: [OrderBy],
-  directives: [ROUTER_DIRECTIVES],
+  styleUrls: ['list-app.component.scss'],
+  providers: [ListService],
+  // pipes: [OrderBy],
+  // directives: [],
   // animations: [
   //   trigger('addListItem', [
   //     state('added', style({ 
@@ -44,20 +42,20 @@ export class ListAppComponent implements OnInit, OnDestroy {
 
   private filter: Array<any> = [];
 
-  constructor(private listService: ListService, private route: ActivatedRoute) { 
+  constructor(private listService: ListService) { 
     // this.listService.listItems.subscribe(listItem => !listItem.deleted);
     // this.listItems = this.listService.getAllListItems();
 
   }
 
   ngOnInit() {
-   this.routesSub = this.route.params.subscribe(params => {
-      let year = parseInt(params['year']);
-      // let month = parseInt(params['month']);
-      // let day = parseInt(params['day']);
+  //  this.routesSub = this.route.params.subscribe(params => {
+  //     let year = parseInt(params['year']);
+  //     // let month = parseInt(params['month']);
+  //     // let day = parseInt(params['day']);
 
-      console.log(year);
-    });
+  //     console.log(year);
+  //   });
   }
 
   ngOnDestroy() {

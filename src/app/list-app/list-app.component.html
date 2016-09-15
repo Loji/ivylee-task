@@ -11,12 +11,9 @@
   <section class="list" *ngIf="listItems.length > 0">
     <div class="content">
       <ul>
-        <li 
-            *ngFor="let listItem of (listItems )" 
-            [class.completed]="listItem.completed" 
-            >
+        <li *ngFor="let listItem of (listItems )" [class.completed]="listItem.completed">
           <h4>{{listItem.order}} - {{listItem.id}} {{listItem.title}} <small>{{listItem.added_date | date : "d.M.y H:m"}}</small></h4>
-          <desc>{{listItem.description}}</desc>
+          <div>{{listItem.description}}</div>
           <div class="actions">
             <span class="grab"><i class="fa fa-hand-paper-o" aria-hidden="true"></i></span>
             <span (click)="toggleListItemCompleted(listItem)">
