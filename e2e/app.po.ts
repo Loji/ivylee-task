@@ -1,4 +1,6 @@
-export class IvyleeTaskPage {
+import { browser, element, by } from 'protractor/globals';
+
+export class IvyleeTaskMigrationPage {
   navigateTo() {
     return browser.get('/');
   }

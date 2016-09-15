@@ -1,10 +1,10 @@
-import { IvyleeTaskPage } from './app.po';
+import { IvyleeTaskMigrationPage } from './app.po';
 
-describe('ivylee-task App', function() {
-  let page: IvyleeTaskPage;
+describe('ivylee-task-migration App', function() {
+  let page: IvyleeTaskMigrationPage;
 
   beforeEach(() => {
-    page = new IvyleeTaskPage();
+    page = new IvyleeTaskMigrationPage();
   });
 
   it('should display message saying app works', () => {

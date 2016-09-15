@@ -1,8 +1,8 @@
-import { Component, OnInit, Pipe, transition, animate, style, state, trigger } from '@angular/core';
+import { Component, OnInit, OnDestroy, Pipe, transition, animate, style, state, trigger } from '@angular/core';
+import { ActivatedRoute, ROUTER_DIRECTIVES } from '@angular/router';
 import { ListItem } from '../list-item';
 import { ListService } from '../list.service';
 import { OrderBy } from './order-by.pipe';
-import { DragulaService } from 'ng2-dragula/ng2-dragula';
 
 
 @Component({
@@ -10,8 +10,9 @@ import { DragulaService } from 'ng2-dragula/ng2-dragula';
   selector: 'list-app',
   templateUrl: 'list-app.component.html',
   styleUrls: ['list-app.component.css'],
-  providers: [ListService],
+  providers: [ListService, ActivatedRoute],
   pipes: [OrderBy],
+  directives: [ROUTER_DIRECTIVES],
   // animations: [
   //   trigger('addListItem', [
   //     state('added', style({ 
@@ -36,19 +37,31 @@ import { DragulaService } from 'ng2-dragula/ng2-dragula';
   // ]
 })
 
-export class ListAppComponent implements OnInit {
+export class ListAppComponent implements OnInit, OnDestroy {
   newListItem: ListItem = new ListItem();
-
+  routesSub: any;
   // listItems: Array<ListItem> = [];
 
-  constructor(private listService: ListService) { 
+  private filter: Array<any> = [];
+
+  constructor(private listService: ListService, private route: ActivatedRoute) { 
     // this.listService.listItems.subscribe(listItem => !listItem.deleted);
     // this.listItems = this.listService.getAllListItems();
 
   }
 
   ngOnInit() {
-    // this.listItems = this.listService.listItems$;
+   this.routesSub = this.route.params.subscribe(params => {
+      let year = parseInt(params['year']);
+      // let month = parseInt(params['month']);
+      // let day = parseInt(params['day']);
+
+      console.log(year);
+    });
+  }
+
+  ngOnDestroy() {
+    this.routesSub.unsub();
   }
 
   get listItems() {
