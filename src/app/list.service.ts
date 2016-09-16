@@ -77,6 +77,13 @@ export class ListService {
     return this.updateById(listItem.id, {deleted: !listItem.deleted});
   }
 
+  getPreviousDate(listItem: ListItem) {
+    
+  }
+
+  getNextDate(listItem: ListItem) {
+
+  }
 }
 
 // export const LOCAL_STORAGE_PROVIDERS:any[] = [

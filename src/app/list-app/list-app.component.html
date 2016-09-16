@@ -11,7 +11,7 @@
   <section class="list" *ngIf="listItems.length > 0">
     <div class="content">
       <ul>
-        <li *ngFor="let listItem of (listItems )" [class.completed]="listItem.completed">
+        <li *ngFor="let listItem of listItems" [class.completed]="listItem.completed">
           <h4>{{listItem.order}} - {{listItem.id}} {{listItem.title}} <small>{{listItem.added_date | date : "d.M.y H:m"}}</small></h4>
           <div>{{listItem.description}}</div>
           <div class="actions">
@@ -28,3 +28,4 @@
     </div>
   </section>
 </section>
+<router-outlet></router-outlet>

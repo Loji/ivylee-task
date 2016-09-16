@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, Pipe, transition, animate, style, state, trigger } from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ListItem } from '../list-item';
 import { ListService } from '../list.service';
-import { OrderBy } from './order-by.pipe';
 
 
 @Component({
@@ -9,7 +9,6 @@ import { OrderBy } from './order-by.pipe';
   templateUrl: 'list-app.component.html',
   styleUrls: ['list-app.component.scss'],
   providers: [ListService],
-  // pipes: [OrderBy],
   // directives: [],
   // animations: [
   //   trigger('addListItem', [
@@ -37,33 +36,38 @@ import { OrderBy } from './order-by.pipe';
 
 export class ListAppComponent implements OnInit, OnDestroy {
   newListItem: ListItem = new ListItem();
-  routesSub: any;
   // listItems: Array<ListItem> = [];
 
-  private filter: Array<any> = [];
+  year: number = null;
+  month: number = null;
+  day: number = null;
 
-  constructor(private listService: ListService) { 
-    // this.listService.listItems.subscribe(listItem => !listItem.deleted);
-    // this.listItems = this.listService.getAllListItems();
-
+  constructor(private listService: ListService, private route: ActivatedRoute, private router: Router) { 
   }
 
   ngOnInit() {
-  //  this.routesSub = this.route.params.subscribe(params => {
-  //     let year = parseInt(params['year']);
-  //     // let month = parseInt(params['month']);
-  //     // let day = parseInt(params['day']);
-
-  //     console.log(year);
-  //   });
+    this.route.params.forEach((params: Params) => {
+       this.year = parseInt(params['year']);
+       this.month = parseInt(params['month']);
+       this.day = parseInt(params['day']);
+     });
   }
 
   ngOnDestroy() {
-    this.routesSub.unsub();
   }
 
   get listItems() {
-    return this.listService.getAllListItems().filter(listItem => !listItem.deleted);
+    return this.listService.getAllListItems()
+      .sort((x, y) => {
+        if(x.order > y.order) {
+          return -1;
+        } else if (x.order < y.order) {
+          return 1;
+        } else {
+          return 0;
+        }
+      })
+      .filter(listItem => !listItem.deleted);
   }
 
   addListItem() {

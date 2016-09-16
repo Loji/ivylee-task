@@ -3,18 +3,25 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+import { routing, appRoutingProviders }  from './app.routing';
 import { ListAppComponent } from './list-app/list-app.component';
+ 
 
 @NgModule({
-  declarations: [
-    ListAppComponent
-  ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    routing
   ],
-  providers: [],
-  bootstrap: [ListAppComponent]
+  declarations: [
+    ListAppComponent
+  ],
+  providers: [
+    appRoutingProviders
+  ],
+  bootstrap: [
+    ListAppComponent
+  ]
 })
 export class AppModule { }
