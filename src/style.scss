@@ -89,6 +89,49 @@ ul {
     }
 }
 
+.navigation {
+    text-align: center;
+    margin: 0 0 1em 0;
+    position: relative;
+    &:after {
+        content: " ";
+        display: table;
+        clear: both;
+    }
+    .current {
+        color: darken($tasks-bg, 15);
+        font-size: 1.5em;
+    }
+    .buttons {
+        padding: 0.5em 0 0;
+        > a {
+            text-decoration: none;
+            background: $tasks-bg;
+            display: inline-block;
+            color: #fff;
+            transition: all 0.3s ease;
+            padding: 0.3em 0.6em;
+            &:hover {
+                background: darken($tasks-bg, 5);
+            }
+        }
+    }
+    .previous {
+        float: left;
+    }
+    .next {
+        float: right;
+    }
+}
+
+.loader {
+    min-height: 50%;
+    min-height: 50vh;
+    color: #fff;
+    padding: 10em 0;
+    text-align: center;
+}
+
 @media(max-width: $desktop-width) {
     ul {
         li {
@@ -124,6 +167,14 @@ ul {
 @media(min-width: $desktop-width) {
     .hidden-desktop {
         display: none;
+    }
+    .navigation {
+        .buttons {
+            padding: 0;
+            position: absolute;
+            top: 0;
+            width: 100%;
+        }
     }
     ul {
         li {
