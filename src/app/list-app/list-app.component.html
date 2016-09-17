@@ -11,9 +11,21 @@
   </section>
   <section class="list" *ngIf="listItems.length > 0">
     <div class="content">
+      <div class="navigation" *ngIf="nextDate || previousDate">
+        <span class="current">{{ currentDate | date : "dd.MM.y" }}</span>
+        
+        <div class="buttons">
+        <a class="previous" *ngIf="previousDate" routerLink="/{{ previousDate | date : 'y/M/d' }}" routerLinkActive="active">
+          <i class="fa fa-angle-left" aria-hidden="true"></i> <span>{{ previousDate | date : "dd.MM.y" }}</span>
+        </a>
+        <a class="next" *ngIf="nextDate" routerLink="/{{ nextDate | date : 'y/M/d' }}" routerLinkActive="active">
+          <span>{{ nextDate | date : "dd.MM.y" }}</span> <i class="fa fa-angle-right" aria-hidden="true"></i>
+        </a>
+        </div>        
+      </div>
       <ul>
         <li *ngFor="let listItem of listItems" [class.completed]="listItem.completed">
-          <h4>{{listItem.title}} <small>{{listItem.added_date | date : "d.M.y H:m"}}</small></h4>
+          <h4>{{listItem.title}} <small>{{listItem.added_date | date : "dd.MM.y HH:mm"}}</small></h4>
           <div>{{listItem.description}}</div>
           <div class="actions">
             <span (click)="toggleListItemCompleted(listItem)">

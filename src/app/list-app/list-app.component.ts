@@ -41,8 +41,13 @@ export class ListAppComponent implements OnInit, OnDestroy {
   year: number = null;
   month: number = null;
   day: number = null;
+  currentDate: Date;
+ 
+  previousDate: any; 
+  nextDate: any;
 
-  constructor(private listService: ListService, private route: ActivatedRoute, private router: Router) { 
+  constructor(private listService: ListService, private route: ActivatedRoute, private router: Router) {     
+    this.currentDate = new Date();
   }
 
   ngOnInit() {
@@ -50,6 +55,12 @@ export class ListAppComponent implements OnInit, OnDestroy {
        this.year = parseInt(params['year']);
        this.month = parseInt(params['month']);
        this.day = parseInt(params['day']);
+       if(!Number.isNaN(this.day)) {
+        this.currentDate = new Date(this.year, this.month - 1, this.day);
+       }
+       this.previousDate = this.listService.getPreviousDate(this.currentDate);
+       this.nextDate = this.listService.getNextDate(this.currentDate);
+
      });
   }
 
@@ -67,7 +78,17 @@ export class ListAppComponent implements OnInit, OnDestroy {
           return 0;
         }
       })
-      .filter(listItem => !listItem.deleted);
+      .filter(listItem => {
+        if(Number.isNaN(this.day) || new Date(this.currentDate).setHours(0, 0, 0, 0) === new Date().setHours(0, 0, 0, 0)) {
+          return !listItem.deleted && (
+            new Date(listItem.added_date).setHours(0, 0, 0, 0) === new Date(this.currentDate).setHours(0, 0, 0, 0) ||
+            !listItem.completed);
+        } else {
+          return !listItem.deleted && (
+            new Date(listItem.added_date).setHours(0, 0, 0, 0) === new Date(this.currentDate).setHours(0, 0, 0, 0));
+        }
+
+      });
   }
 
   addListItem() {

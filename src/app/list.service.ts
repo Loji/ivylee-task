@@ -77,12 +77,28 @@ export class ListService {
     return this.updateById(listItem.id, {deleted: !listItem.deleted});
   }
 
-  getPreviousDate(listItem: ListItem) {
-    
+  getOrderedByDate() {
+    return this.listItems.sort((x, y) => {
+        if(x.added_date < y.added_date) {
+          return -1;
+        } else if (x.added_date > y.added_date) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
   }
 
-  getNextDate(listItem: ListItem) {
+  getPreviousDate(date: Date) {
+    let firstPrevious = this.getOrderedByDate()
+      .filter(item => new Date(item.added_date).setHours(0, 0, 0, 0) < new Date(date).setHours(0, 0, 0, 0)).pop();
+    return firstPrevious ? new Date(firstPrevious.added_date) : false;    
+  }
 
+  getNextDate(date: Date) {
+    let firstNext = this.getOrderedByDate()
+      .filter(item => new Date(item.added_date).setHours(0, 0, 0, 0) > new Date(date).setHours(0, 0, 0, 0)).shift();
+    return firstNext ? new Date(firstNext.added_date) : false;    
   }
 }
 
