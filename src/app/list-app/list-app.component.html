@@ -6,13 +6,14 @@
       </div>
       <input placeholder="Type task name..." [(ngModel)]="newListItem.title">
       <textarea placeholder="Type task description..." [(ngModel)]="newListItem.description"></textarea>
+      <button class="hidden-desktop" (click)="addListItem()">Add task</button>
     </div>
   </section>
   <section class="list" *ngIf="listItems.length > 0">
     <div class="content">
       <ul>
         <li *ngFor="let listItem of listItems" [class.completed]="listItem.completed">
-          <h4>{{listItem.order}} - {{listItem.id}} {{listItem.title}} <small>{{listItem.added_date | date : "d.M.y H:m"}}</small></h4>
+          <h4>{{listItem.title}} <small>{{listItem.added_date | date : "d.M.y H:m"}}</small></h4>
           <div>{{listItem.description}}</div>
           <div class="actions">
             <span (click)="toggleListItemCompleted(listItem)">

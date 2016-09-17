@@ -1,18 +1,15 @@
 $body-color: #A2B09A;
 $main-color: #AB936B;
-
 $input-border: #AB936B;
 $input-bg: #AB936B;
 $input-color: #fafafa;
-
 $text-color: #998E7D;
 $tasks-bg: #AB936B;
 $task-border: #AB936B;
 $task-color: #f0f0f0;
 $gray-main: #bbb;
-
 $task-complete-bg: #59a559;
-
+$desktop-width: 600px;
 * {
     box-sizing: border-box;
 }
@@ -54,14 +51,15 @@ section {
 }
 
 textarea,
-input {
+input,
+button {
     width: 100%;
     border: none;
     background: $input-bg;
     border-radius: 5px;
     margin-top: 1em;
     padding: 0.5em 1em;
-    transition: all 0.3s ease; 
+    transition: all 0.3s ease;
     color: $input-color;
     &:focus {
         background: darken($input-bg, 15);
@@ -83,53 +81,70 @@ ul {
         border-radius: 4px;
         padding: 1em 1em;
         transition: all 0.3s ease;
-        position: relative; 
+        position: relative;
         overflow: hidden;
         &.completed {
             background: $task-complete-bg;
         }
-        &:hover {
+    }
+}
+
+@media(max-width: $desktop-width) {
+    ul {
+        li {
             .actions {
-                opacity: 1; 
-                transform: translateY(0);
+                display: block;
+                &:after {
+                    content: " ";
+                    display: table;
+                    clear: both;
+                }
+                > span {
+                    display: block;
+                    text-align: center;
+                    float: right;
+                    width: 25%;
+                    padding: 0.25em;
+                    margin: 0.5em;
+                    font-size: 1.1em;
+                    background: darken($tasks-bg, 5);
+                }
             }
-        }
-        .actions {
-            position: absolute; 
-            top: 0; 
-            right: 0;
-            padding: 1.2em;
-            transition: all 0.3s ease; 
-            opacity: 0; 
-            transform: translateY(-100%);
-            > span {
-                cursor: pointer;
+            &.completed {
+                .actions {
+                    > span {
+                        background: darken($task-complete-bg, 5);
+                    }
+                }
             }
         }
     }
 }
 
-.dnd-drag-start {
-    -moz-transform:scale(0.8);
-    -webkit-transform:scale(0.8);
-    transform:scale(0.8);
-    opacity:0.7;
-    border: 2px dashed #000;
-}
-
-.dnd-drag-enter {
-    opacity:0.7;
-    border: 2px dashed #000;
-}
-
-.dnd-drag-over {
-    border: 2px dashed #000;
-}
-
-.dnd-sortable-drag {
-  -moz-transform:scale(0.9);
-  -webkit-transform:scale(0.9);
-  transform:scale(0.9);
-  opacity:0.7;
-  border: 1px dashed #000;
+@media(min-width: $desktop-width) {
+    .hidden-desktop {
+        display: none;
+    }
+    ul {
+        li {
+            &:hover {
+                .actions {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            .actions {
+                position: absolute;
+                top: 0;
+                right: 0;
+                padding: 1.2em;
+                transition: all 0.3s ease;
+                opacity: 0;
+                transform: translateY(-100%);
+                > span {
+                    cursor: pointer;
+                }
+            }
+        }
+    }
 }
