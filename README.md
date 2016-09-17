@@ -4,6 +4,8 @@ Simple web application implementing Ivy Lee task list idea to enhance productivi
 
 http://jamesclear.com/ivy-lee 
 
+Live version available at https://loji.github.io/ivylee-task/ 
+
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.14.
 
 ## Development server
