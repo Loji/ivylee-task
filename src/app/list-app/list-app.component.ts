@@ -5,7 +5,7 @@ import { ListService } from '../list.service';
 
 
 @Component({
-  selector: 'app-root',
+  selector: 'list-app',
   templateUrl: 'list-app.component.html',
   styleUrls: ['list-app.component.scss'],
   providers: [ListService],

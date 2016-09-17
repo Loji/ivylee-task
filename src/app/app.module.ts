@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 
 import { routing, appRoutingProviders }  from './app.routing';
 import { ListAppComponent } from './list-app/list-app.component';
+import { AppComponent } from './app.component';
  
 
 @NgModule({
@@ -15,13 +16,14 @@ import { ListAppComponent } from './list-app/list-app.component';
     routing
   ],
   declarations: [
-    ListAppComponent
+    ListAppComponent,
+    AppComponent
   ],
   providers: [
     appRoutingProviders
   ],
   bootstrap: [
-    ListAppComponent
+    AppComponent
   ]
 })
 export class AppModule { }
