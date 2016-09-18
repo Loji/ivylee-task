@@ -29,6 +29,14 @@ body {
     "Helvetica Neue", Arial, sans-serif;
 }
 
+a {
+    color: $main-color;
+    text-decoration: none;
+    &:hover {
+        color: darken($main-color, 15);
+    }
+}
+
 h4 {
     font-size: 1.5em;
     margin: 0 0 0.5em 0;
@@ -50,22 +58,27 @@ section {
     }
 }
 
-textarea,
-input,
-button {
-    width: 100%;
-    border: none;
-    background: $input-bg;
-    border-radius: 5px;
-    margin-top: 1em;
-    padding: 0.5em 1em;
-    transition: all 0.3s ease;
-    color: $input-color;
-    &:focus {
-        background: darken($input-bg, 15);
-        // border-color: darken($input-border, 15);
-        outline: none;
-        box-shadow: none;
+.form {
+    > textarea,
+    > input,
+    > button {
+        border: none;
+        background: $input-bg;
+        border-radius: 5px;
+        margin-top: 1em;
+        padding: 0.5em 1em;
+        transition: all 0.3s ease;
+        color: $input-color;
+        &:focus {
+            background: darken($input-bg, 15);
+            // border-color: darken($input-border, 15);
+            outline: none;
+            box-shadow: none;
+        }
+    }
+    > textarea,
+    > input {
+        width: 100%;
     }
 }
 
@@ -132,6 +145,31 @@ ul {
     text-align: center;
 }
 
+.info {
+    .btn i {
+        cursor: pointer;
+        color: #fff;
+        background: $main-color;
+        width: 1.2em;
+        height: 1.2em;
+        line-height: 1.2em;
+        text-align: center;
+        border-radius: 100%;
+        display: inline-block;
+    }
+    &.visible {
+        .open {
+            display: none;
+        }
+        .text {
+            display: block;
+        }
+    }
+    .text {
+        display: none;
+    }
+}
+
 @media(max-width: $desktop-width) {
     ul {
         li {
@@ -174,6 +212,44 @@ ul {
             position: absolute;
             top: 0;
             width: 100%;
+        }
+    }
+    .info {
+        > .btn {
+            position: fixed;
+            left: 3em;
+            top: 3em;
+            i {
+                font-size: 2.3em;
+            }
+        }
+        .btn {
+            span {
+                display: none;
+            }
+        }
+        .text {
+            display: block;
+            position: fixed;
+            z-index: 1000;
+            padding: 1em 1em 2em 1em;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 35%;
+            background: #fff;
+            box-shadow: 0 0 6px 5px rgba(0, 0, 0, 0.1);
+            transition: all 0.6s ease;
+            transform: translateX(-105%);
+            .close {
+                margin-bottom: 1em;
+                text-align: right;
+            }
+        }
+        &.visible {
+            .text {
+                transform: translateX(0);
+            }
         }
     }
     ul {
