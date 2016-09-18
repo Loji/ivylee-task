@@ -113,15 +113,8 @@ ul {
             width: 100%;
         }
     }
+
     .info {
-        > .btn {
-            position: fixed;
-            left: 3em;
-            top: 3em;
-            i {
-                font-size: 2.3em;
-            }
-        }
         .btn {
             span {
                 display: none;
