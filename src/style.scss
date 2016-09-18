@@ -1,7 +1,5 @@
-$body-color: #A2B09A;
-$main-color: #AB936B;
-$text-color: #998E7D;
-$desktop-width: 600px;
+@import "variables";
+
 * {
     box-sizing: border-box;
 }

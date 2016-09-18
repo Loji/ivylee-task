@@ -1,15 +1,5 @@
-$body-color: #A2B09A;
-$main-color: #AB936B;
-$input-border: #AB936B;
-$input-bg: #AB936B;
-$input-color: #fafafa;
-$text-color: #998E7D;
-$tasks-bg: #AB936B;
-$task-border: #AB936B;
-$task-color: #f0f0f0;
-$gray-main: #bbb;
-$task-complete-bg: #59a559;
-$desktop-width: 600px;
+@import "../../variables";
+
 section {
     &.input {
         background: #fff;
@@ -38,6 +28,10 @@ section {
     > input {
         width: 100%;
     }
+    > textarea {
+        min-height: 6em;
+    }
+
 }
 
 ul {
