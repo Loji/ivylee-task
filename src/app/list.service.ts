@@ -15,7 +15,38 @@ export class ListService {
     if(this.localStorage['list']) {
       this.listItems = JSON.parse(this.localStorage['list']);
       this.lastId = this.getLastId();
-    } 
+    } else {
+      if(!this.localStorage['visited']) {
+        let today = new Date();
+        this.addUpdateListItem(
+          new ListItem({
+            'title': 'I\'m old task',
+            'description': 'You can delete me!',
+            'added_date': new Date(today.getDate() - 1).setHours(12, 15, 12, 12),
+            'completion_date': new Date(today.getDate() - 1).setHours(14, 15, 12, 12),
+            'completed': true
+          })
+        );
+
+        this.addUpdateListItem(
+          new ListItem({
+            'title': 'Match old task finished',
+            'description': 'Hover me and click tick icon to match me as finished.',
+            'added_date': new Date(today.getDate() - 1).setHours(17, 25, 12, 12),
+          })
+        );
+
+        this.addUpdateListItem(
+          new ListItem({
+            'title': 'Check out icons on left',
+            'description': 'You\'ll learn more about this app there',
+            'added_date': new Date().setHours(11, 22, 12, 12),
+          })
+        );
+
+        this.localStorage['visited'] = true;
+      }
+    }
   }
 
   saveToLocalstorage() {
@@ -38,6 +69,8 @@ export class ListService {
 
   deleteItem(listItem: ListItem): ListService {
     this.listItems = this.listItems.filter(el => el.id != listItem.id);
+
+    this.saveToLocalstorage();
 
     return this;
   }

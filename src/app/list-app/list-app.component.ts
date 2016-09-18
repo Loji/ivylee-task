@@ -62,6 +62,12 @@ export class ListAppComponent implements OnInit, OnDestroy {
        this.previousDate = this.listService.getPreviousDate(this.currentDate);
        this.nextDate = this.listService.getNextDate(this.currentDate);
 
+       // hotfix for listing next date when there is no next date
+       if(!Number.isNaN(this.day) && 
+       !this.nextDate && 
+       new Date(this.currentDate).setHours(0, 0, 0 ,0) !== new Date().setHours(0, 0, 0 ,0)) {
+         this.nextDate = new Date();
+       }
      });
   }
 
