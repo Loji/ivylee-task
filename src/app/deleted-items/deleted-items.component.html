@@ -1,6 +1,6 @@
-<section class="deleted-list" *ngIf="deletedListItems.length > 0">
+<section class="deleted-list" >
     <div class="content">
-        <ul>
+        <ul *ngIf="deletedListItems.length > 0">
             <li *ngFor="let listItem of deletedListItems" [class.completed]="listItem.completed">
                 <h4>{{listItem.title}}</h4>
                 <div>{{listItem.description}}</div>
@@ -19,5 +19,6 @@
                 </div>
             </li>
         </ul>
+        <h2 class="centered" *ngIf="deletedListItems.length == 0">No deleted items to restore or trash</h2>
     </div>
 </section>

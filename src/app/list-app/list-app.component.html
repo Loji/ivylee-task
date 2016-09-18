@@ -10,7 +10,7 @@
       </div>
     </div>
   </section>
-  <section class="list" *ngIf="listItems.length > 0">
+  <section class="list">
     <div class="content">
       <div class="navigation" *ngIf="nextDate || previousDate">
         <span class="current">{{ currentDate | date : "dd.MM.y" }}</span>
@@ -24,7 +24,7 @@
         </a>
         </div>        
       </div>
-      <ul>
+      <ul  *ngIf="listItems.length > 0">
         <li *ngFor="let listItem of listItems" [class.completed]="listItem.completed">
           <h4>{{listItem.title}}</h4>
           <div>{{listItem.description}}</div>
@@ -46,6 +46,7 @@
           </div>
         </li>
       </ul>
+      <h2 class="centered" *ngIf="listItems.length == 0">No list items. Add new to keep going!</h2>
     </div>
   </section>
 </section>
