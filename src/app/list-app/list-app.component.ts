@@ -10,7 +10,7 @@ import { ListService } from '../list.service';
   styleUrls: ['list-app.component.scss'],
   providers: [ListService],
   // directives: [],
-  // animations: [
+  // animations: [ 
   //   trigger('addListItem', [
   //     state('added', style({ 
   //       // transform: 'translateY(0)',
@@ -79,15 +79,15 @@ export class ListAppComponent implements OnInit, OnDestroy {
         } else {
           return 0;
         }
-      })
+      }) 
       .filter(listItem => {
         if(Number.isNaN(this.day) || new Date(this.currentDate).setHours(0, 0, 0, 0) === new Date().setHours(0, 0, 0, 0)) {
           return !listItem.deleted && (
-            new Date(listItem.added_date).setHours(0, 0, 0, 0) === new Date(this.currentDate).setHours(0, 0, 0, 0) ||
+            new Date(listItem.completion_date).setHours(0, 0, 0, 0) === new Date(this.currentDate).setHours(0, 0, 0, 0) ||
             !listItem.completed);
         } else {
           return !listItem.deleted && (
-            new Date(listItem.added_date).setHours(0, 0, 0, 0) === new Date(this.currentDate).setHours(0, 0, 0, 0));
+            new Date(listItem.completion_date).setHours(0, 0, 0, 0) === new Date(this.currentDate).setHours(0, 0, 0, 0));
         }
 
       });

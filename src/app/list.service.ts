@@ -90,18 +90,22 @@ export class ListService {
   }
 
   getPreviousDate(date: Date) {
-    let firstPrevious = this.getOrderedByDate()
-      .filter(item => !item.deleted && new Date(item.added_date).setHours(0, 0, 0, 0) < new Date(date).setHours(0, 0, 0, 0)).pop();
+    let firstPrevious = this.getOrderedByDate() 
+      .filter(
+        item => !item.deleted && 
+        item.completed && 
+        new Date(item.completion_date).setHours(0, 0, 0, 0) < new Date(date).setHours(0, 0, 0, 0)
+      ).pop();
     return firstPrevious ? new Date(firstPrevious.added_date) : false;    
   }
 
   getNextDate(date: Date) {
     let firstNext = this.getOrderedByDate()
-      .filter(item => !item.deleted && new Date(item.added_date).setHours(0, 0, 0, 0) > new Date(date).setHours(0, 0, 0, 0)).shift();
+      .filter(
+        item => !item.deleted && 
+        item.completed &&
+        new Date(item.completion_date).setHours(0, 0, 0, 0) > new Date(date).setHours(0, 0, 0, 0)
+      ).shift();
     return firstNext ? new Date(firstNext.added_date) : false;    
   }
 }
-
-// export const LOCAL_STORAGE_PROVIDERS:any[] = [
-//     provide(ListService, {useClass: ListService})
-// ];

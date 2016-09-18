@@ -25,7 +25,7 @@
         <textarea placeholder="Type task description..." [(ngModel)]="newListItem.description"></textarea>
         <button class="hidden-desktop" (click)="addListItem()">
           {{ !newListItem.id ? 'Add task' : 'Edit task' }}
-        </button>
+        </button> 
       </div>
     </div>
   </section>
@@ -45,8 +45,13 @@
       </div>
       <ul>
         <li *ngFor="let listItem of listItems" [class.completed]="listItem.completed">
-          <h4>{{listItem.title}} <small>{{listItem.added_date | date : "dd.MM.y HH:mm"}}</small></h4>
+          <h4>{{listItem.title}}</h4>
           <div>{{listItem.description}}</div>
+          <div class="dates">
+            <div>Added: {{listItem.added_date | date : "dd.MM.y HH:mm"}}</div>
+            <div *ngIf="listItem.completed">Completed: {{listItem.completion_date | date : "dd.MM.y HH:mm"}}</div>
+          </div>
+
           <div class="actions">
             <span (click)="toggleListItemCompleted(listItem)">
               <i class="fa" [class.fa-check]="!listItem.completed" [class.fa-times]="listItem.completed" aria-hidden="true"></i>
