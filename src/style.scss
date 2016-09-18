@@ -1,14 +1,7 @@
 $body-color: #A2B09A;
 $main-color: #AB936B;
-$input-border: #AB936B;
-$input-bg: #AB936B;
-$input-color: #fafafa;
 $text-color: #998E7D;
-$tasks-bg: #AB936B;
-$task-border: #AB936B;
-$task-color: #f0f0f0;
-$gray-main: #bbb;
-$task-complete-bg: #59a559;
+
 $desktop-width: 600px;
 * {
     box-sizing: border-box;
@@ -52,91 +45,6 @@ h4 {
     padding: 2em;
 }
 
-section {
-    &.input {
-        background: #fff;
-    }
-}
-
-.form {
-    > textarea,
-    > input,
-    > button {
-        border: none;
-        background: $input-bg;
-        border-radius: 5px;
-        margin-top: 1em;
-        padding: 0.5em 1em;
-        transition: all 0.3s ease;
-        color: $input-color;
-        &:focus {
-            background: darken($input-bg, 15);
-            // border-color: darken($input-border, 15);
-            outline: none;
-            box-shadow: none;
-        }
-    }
-    > textarea,
-    > input {
-        width: 100%;
-    }
-}
-
-ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    li {
-        color: $task-color;
-        margin: 0 0 1em;
-        background: $tasks-bg;
-        // border-bottom: 3px solid darken($tasks-bg, 10);
-        border-radius: 4px;
-        padding: 1em 1em;
-        transition: all 0.3s ease;
-        position: relative;
-        overflow: hidden;
-        &.completed {
-            background: $task-complete-bg;
-        }
-    }
-}
-
-.navigation {
-    text-align: center;
-    margin: 0 0 1em 0;
-    position: relative;
-    &:after {
-        content: " ";
-        display: table;
-        clear: both;
-    }
-    .current {
-        color: darken($tasks-bg, 15);
-        font-size: 1.5em;
-    }
-    .buttons {
-        padding: 0.5em 0 0;
-        > a {
-            text-decoration: none;
-            background: $tasks-bg;
-            display: inline-block;
-            color: #fff;
-            transition: all 0.3s ease;
-            padding: 0.3em 0.6em;
-            &:hover {
-                background: darken($tasks-bg, 5);
-            }
-        }
-    }
-    .previous {
-        float: left;
-    }
-    .next {
-        float: right;
-    }
-}
-
 .loader {
     min-height: 50%;
     min-height: 50vh;
@@ -171,125 +79,10 @@ ul {
     }
 }
 
-@media(max-width: $desktop-width) {
-    ul {
-        li {
-            .actions {
-                display: block;
-                &:after {
-                    content: " ";
-                    display: table;
-                    clear: both;
-                }
-                > span {
-                    display: block;
-                    text-align: center;
-                    float: right;
-                    width: 25%;
-                    padding: 0.25em;
-                    margin: 0.5em;
-                    font-size: 1.1em;
-                    background: darken($tasks-bg, 5);
-                }
-            }
-            &.completed {
-                .actions {
-                    > span {
-                        background: darken($task-complete-bg, 5);
-                    }
-                }
-            }
-        }
-    }
-}
+
 
 @media(min-width: $desktop-width) {
     .hidden-desktop {
         display: none;
-    }
-    .navigation {
-        .buttons {
-            padding: 0;
-            position: absolute;
-            top: 0;
-            width: 100%;
-        }
-    }
-    .info {
-        > .btn {
-            position: fixed;
-            left: 3em;
-            top: 3em;
-            i {
-                font-size: 2.3em;
-            }
-        }
-        .btn {
-            span {
-                display: none;
-            }
-        }
-        .text {
-            display: block;
-            position: fixed;
-            z-index: 1000;
-            padding: 1em 1em 2em 1em;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 35%;
-            background: #fff;
-            box-shadow: 0 0 6px 5px rgba(0, 0, 0, 0.1);
-            transition: all 0.6s ease;
-            transform: translateX(-105%);
-            .close {
-                margin-bottom: 1em;
-                text-align: right;
-            }
-        }
-        &:before {
-            position: fixed;
-            top: 0;
-            bottom: 0;
-            right: 0;
-            left: 0;
-            visibility: hidden;
-            opacity: 0;
-            z-index: 1;
-            transition: all 0.6s ease;
-            content: " ";
-            background: #000;
-        }
-        &.visible {
-            &:before {
-                visibility: visible;
-                opacity: 0.5;
-            }
-            .text {
-                transform: translateX(0);
-            }
-        }
-    }
-    ul {
-        li {
-            &:hover {
-                .actions {
-                    opacity: 1;
-                    transform: translateY(0);
-                }
-            }
-            .actions {
-                position: absolute;
-                top: 0;
-                right: 0;
-                padding: 1.2em;
-                transition: all 0.3s ease;
-                opacity: 0;
-                transform: translateY(-100%);
-                > span {
-                    cursor: pointer;
-                }
-            }
-        }
     }
 }
