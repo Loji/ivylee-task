@@ -1,25 +1,6 @@
 <section class="list-app">
   <section class="input"  (keyup.enter)="addListItem()">
     <div class="content">
-      <div class="description">
-        <h1>Ivy Lee Task List</h1>
-        <div class="info" [class.visible]="infoVisible">
-          <div class="btn open" (click)="infoVisible = !infoVisible"><i class="fa fa-question-circle" aria-hidden="true"></i> <span>Show help</span></div>
-          <div class="text">
-            <div class="btn close" (click)="infoVisible = !infoVisible"><i class="fa fa-times" aria-hidden="true"></i> <span>Close help</span></div>
-            Simple program to help you organise your productive todo list. 
-            <ol>
-              <li>At the end of the day write down six things you need to do tomorrow. Do not write down more than six things.</li>
-              <li>When you start working tomorrow focus on most important task. Work until you finish it before starting working on other.</li>
-              <li>At the end of day mark everything you've done as finished. Unfinished tasks will automatically go to next day.</li>
-            </ol>
-            <hr>
-            Method source and inspiration: <a href="http://jamesclear.com/ivy-lee">http://jamesclear.com/ivy-lee</a><br/>
-            Created by <a href="https://lechocki.pl/">Jakub Lechocki</a><br/>
-            Source code on <a href="https://github.com/Loji/ivylee-task">GitHub</a>
-          </div>
-        </div>
-      </div>
       <div class="form">
         <input placeholder="Type task name..." [(ngModel)]="newListItem.title">
         <textarea placeholder="Type task description..." [(ngModel)]="newListItem.description"></textarea>

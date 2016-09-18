@@ -1,0 +1,23 @@
+<section class="deleted-list" *ngIf="deletedListItems.length > 0">
+    <div class="content">
+        <ul>
+            <li *ngFor="let listItem of deletedListItems" [class.completed]="listItem.completed">
+                <h4>{{listItem.title}}</h4>
+                <div>{{listItem.description}}</div>
+                <div class="dates">
+                    <div>Added: {{listItem.added_date | date : "dd.MM.y HH:mm"}}</div>
+                    <div *ngIf="listItem.completed">Completed: {{listItem.completion_date | date : "dd.MM.y HH:mm"}}</div>
+                </div>
+
+                <div class="actions">
+                    <span (click)="restoreItem(listItem)">
+                      <i class="fa fa-undo" aria-hidden="true"></i>
+                    </span>
+                    <span (click)="trashItem(listItem)">
+                      <i class="fa fa-trash-o" aria-hidden="true"></i>
+                    </span>
+                </div>
+            </li>
+        </ul>
+    </div>
+</section>

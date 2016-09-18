@@ -6,6 +6,7 @@ import { HttpModule } from '@angular/http';
 import { routing, appRoutingProviders }  from './app.routing';
 import { ListAppComponent } from './list-app/list-app.component';
 import { AppComponent } from './app.component';
+import { DeletedItemsComponent } from './deleted-items/deleted-items.component';
  
 
 @NgModule({
@@ -17,7 +18,8 @@ import { AppComponent } from './app.component';
   ],
   declarations: [
     ListAppComponent,
-    AppComponent
+    AppComponent,
+    DeletedItemsComponent
   ],
   providers: [
     appRoutingProviders

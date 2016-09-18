@@ -46,7 +46,6 @@ export class ListAppComponent implements OnInit, OnDestroy {
   previousDate: any; 
   nextDate: any;
 
-  infoVisible: boolean = false; 
 
   constructor(private listService: ListService, private route: ActivatedRoute, private router: Router) {     
     this.currentDate = new Date();
