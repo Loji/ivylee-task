@@ -100,7 +100,7 @@ export class ListAppComponent implements OnInit, OnDestroy {
   addListItem() {
     this.newListItem.added_date = new Date();
     this.newListItem.completed = false;
-    this.listService.addListItem(this.newListItem);
+    this.listService.addUpdateListItem(this.newListItem);
     this.newListItem = new ListItem();
   }
 

@@ -22,14 +22,14 @@ export class ListService {
     this.localStorage['list'] = JSON.stringify(this.listItems);
   }
 
-  addListItem(listItem: ListItem): ListService {
+  addUpdateListItem(listItem: ListItem): ListService {
     if(!listItem.id) {
       listItem.id = ++this.lastId;
-    }
-    if(!listItem.order) {
       listItem.order = this.lastId;
+      this.listItems.push(listItem);  
+    } else {
+      this.updateById(listItem.id, listItem);
     }
-    this.listItems.push(listItem);
 
     this.saveToLocalstorage();
 

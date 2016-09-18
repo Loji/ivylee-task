@@ -23,7 +23,9 @@
       <div class="form">
         <input placeholder="Type task name..." [(ngModel)]="newListItem.title">
         <textarea placeholder="Type task description..." [(ngModel)]="newListItem.description"></textarea>
-        <button class="hidden-desktop" (click)="addListItem()">Add task</button>
+        <button class="hidden-desktop" (click)="addListItem()">
+          {{ !newListItem.id ? 'Add task' : 'Edit task' }}
+        </button>
       </div>
     </div>
   </section>
