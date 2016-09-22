@@ -5,7 +5,7 @@ section {
         background: $header-bg;
         .content {
             padding-top: 0;
-            border-bottom: 1px solid darken($header-bg, 25%);
+            border-bottom: 1px solid darken($tasks-bg, 25%);
         }
     }
 }
