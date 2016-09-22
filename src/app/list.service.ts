@@ -79,11 +79,11 @@ export class ListService {
     if(this.listItems.length === 0) {
       return 0;
     }
-    return this.listItems.reduce(function(a, b){ return a.id > a.id ? a : b }).id;
+    return this.listItems.reduce(function(a, b){ return a.id > b.id ? a : b }).id;
   }
 
   getAllListItems(): ListItem[] {
-    return this.listItems; 
+    return this.listItems;
   }
 
   getById(id: number): ListItem {
