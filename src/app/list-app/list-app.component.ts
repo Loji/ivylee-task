@@ -10,28 +10,46 @@ import { ListService } from '../list.service';
   styleUrls: ['list-app.component.scss'],
   providers: [ListService],
   // directives: [],
-  // animations: [ 
-  //   trigger('addListItem', [
-  //     state('added', style({ 
-  //       // transform: 'translateY(0)',
-  //       opacity: 1
-  //     })),
-  //     transition('void => *', [
-  //       style({
-  //         // transform: 'translateY(-100%)',
-  //         opacity: 0,
-  //       }),
-  //       animate('250ms ease')
-  //     ]),
-  //     transition('* => void', [
-  //       style({
-  //         // transform: 'translateY(-100%)',
-  //         opacity: 0,
-  //       }),
-  //       animate('250ms ease')
-  //     ]),
-  //   ])
-  // ]
+  animations: [
+    trigger('animateListItem', [
+      transition('* => void', [
+        style({
+          transform: 'translateY(0) translateX(0)',
+          opacity: 1,
+        }),
+        animate('350ms ease', style({
+          transform: 'translateY(0%) translateX(-100%)',
+          opacity: 0,
+        }))
+      ]),
+      transition('void => added', [
+        style({
+          transform: 'translateY(-100%) translateX(0)',
+          opacity: 0,
+        }),
+        animate('350ms ease', style({
+          transform: 'translateY(0%) translateX(0)',
+          opacity: 1,
+        }))
+      ]),
+
+
+
+      // state('added', style({
+      //   transform: 'translateY(0) translateX(0)',
+      //   opacity: 1,
+      // })),
+      // state('void', style({
+      //   transform: 'translateY(-100%)',
+      //   opacity: 0,
+      // })),
+      // state('deleted', style({
+      //   transform: 'translateX(-100%)',
+      //   opacity: 0,
+      // })),
+      // transition('* => *', animate('250ms ease')),
+    ]),
+  ]
 })
 
 export class ListAppComponent implements OnInit, OnDestroy {
@@ -42,33 +60,33 @@ export class ListAppComponent implements OnInit, OnDestroy {
   month: number = null;
   day: number = null;
   currentDate: Date;
- 
-  previousDate: any; 
+
+  previousDate: any;
   nextDate: any;
 
 
-  constructor(private listService: ListService, private route: ActivatedRoute, private router: Router) {     
+  constructor(private listService: ListService, private route: ActivatedRoute, private router: Router) {
     this.currentDate = new Date();
   }
 
   ngOnInit() {
     this.route.params.forEach((params: Params) => {
-       this.year = parseInt(params['year']);
-       this.month = parseInt(params['month']);
-       this.day = parseInt(params['day']);
-       if(!Number.isNaN(this.day)) {
+      this.year = parseInt(params['year']);
+      this.month = parseInt(params['month']);
+      this.day = parseInt(params['day']);
+      if (!Number.isNaN(this.day)) {
         this.currentDate = new Date(this.year, this.month - 1, this.day);
-       }
-       this.previousDate = this.listService.getPreviousDate(this.currentDate);
-       this.nextDate = this.listService.getNextDate(this.currentDate);
+      }
+      this.previousDate = this.listService.getPreviousDate(this.currentDate);
+      this.nextDate = this.listService.getNextDate(this.currentDate);
 
-       // hotfix for listing next date when there is no next date
-       if(!Number.isNaN(this.day) && 
-       !this.nextDate && 
-       new Date(this.currentDate).setHours(0, 0, 0 ,0) !== new Date().setHours(0, 0, 0 ,0)) {
-         this.nextDate = new Date();
-       }
-     });
+      // hotfix for listing next date when there is no next date
+      if (!Number.isNaN(this.day) &&
+        !this.nextDate &&
+        new Date(this.currentDate).setHours(0, 0, 0, 0) !== new Date().setHours(0, 0, 0, 0)) {
+        this.nextDate = new Date();
+      }
+    });
   }
 
   ngOnDestroy() {
@@ -77,16 +95,16 @@ export class ListAppComponent implements OnInit, OnDestroy {
   get listItems() {
     return this.listService.getAllListItems()
       .sort((x, y) => {
-        if(x.order > y.order) {
+        if (x.order > y.order) {
           return -1;
         } else if (x.order < y.order) {
           return 1;
         } else {
           return 0;
         }
-      }) 
+      })
       .filter(listItem => {
-        if(Number.isNaN(this.day) || new Date(this.currentDate).setHours(0, 0, 0, 0) === new Date().setHours(0, 0, 0, 0)) {
+        if (Number.isNaN(this.day) || new Date(this.currentDate).setHours(0, 0, 0, 0) === new Date().setHours(0, 0, 0, 0)) {
           return !listItem.deleted && (
             new Date(listItem.completion_date).setHours(0, 0, 0, 0) === new Date(this.currentDate).setHours(0, 0, 0, 0) ||
             !listItem.completed);

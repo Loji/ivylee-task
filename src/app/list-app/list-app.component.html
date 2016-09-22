@@ -24,8 +24,12 @@
         </a>
         </div>        
       </div>
-      <ul  *ngIf="listItems.length > 0">
-        <li *ngFor="let listItem of listItems" [class.completed]="listItem.completed">
+      <ul>
+        <li 
+          *ngFor="let listItem of listItems" 
+          [class.completed]="listItem.completed"
+          [@animateListItem]="listItem.deleted ? 'deleted' : 'added'" 
+          >
           <h4>{{listItem.title}}</h4>
           <div>{{listItem.description}}</div>
           <div class="dates">
