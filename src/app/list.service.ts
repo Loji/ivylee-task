@@ -4,19 +4,19 @@ import { ListItem } from './list-item';
 @Injectable()
 export class ListService {
 
-  lastId: number = 0; 
+  lastId: number = 0;
 
   listItems: ListItem[] = [];
 
   public localStorage: any;
 
-  constructor() { 
+  constructor() {
     this.localStorage = localStorage;
-    if(this.localStorage['list']) {
+    if (this.localStorage['list']) {
       this.listItems = JSON.parse(this.localStorage['list']);
       this.lastId = this.getLastId();
     } else {
-      if(!this.localStorage['visited']) {
+      if (!this.localStorage['visited']) {
         let today = new Date();
         this.addUpdateListItem(
           new ListItem({
@@ -57,7 +57,7 @@ export class ListService {
     if(!listItem.id) {
       listItem.id = ++this.lastId;
       listItem.order = this.lastId;
-      this.listItems.push(listItem);  
+      this.listItems.push(listItem);
     } else {
       this.updateById(listItem.id, listItem);
     }
@@ -68,7 +68,7 @@ export class ListService {
   }
 
   deleteItem(listItem: ListItem): ListService {
-    this.listItems = this.listItems.filter(el => el.id != listItem.id);
+    this.listItems = this.listItems.filter(el => el.id !== listItem.id);
 
     this.saveToLocalstorage();
 
@@ -76,10 +76,10 @@ export class ListService {
   }
 
   getLastId(): number {
-    if(this.listItems.length === 0) {
+    if (this.listItems.length === 0) {
       return 0;
     }
-    return this.listItems.reduce(function(a, b){ return a.id > b.id ? a : b }).id;
+    return this.listItems.reduce(function(a, b){ return a.id > b.id ? a : b; }).id;
   }
 
   getAllListItems(): ListItem[] {
@@ -92,11 +92,11 @@ export class ListService {
 
   updateById(id: number, values: Object = {}): ListItem {
     let listItem = this.getById(id);
-    if(!listItem) {
+    if (!listItem) {
       return null;
     }
     Object.assign(listItem, values);
- 
+
     this.saveToLocalstorage();
 
     return listItem;
@@ -112,7 +112,7 @@ export class ListService {
 
   getOrderedByDate() {
     return this.listItems.sort((x, y) => {
-        if(x.added_date < y.added_date) {
+        if (x.added_date < y.added_date) {
           return -1;
         } else if (x.added_date > y.added_date) {
           return 1;
@@ -123,22 +123,22 @@ export class ListService {
   }
 
   getPreviousDate(date: Date) {
-    let firstPrevious = this.getOrderedByDate() 
+    let firstPrevious = this.getOrderedByDate()
       .filter(
-        item => !item.deleted && 
-        item.completed && 
+        item => !item.deleted &&
+        item.completed &&
         new Date(item.completion_date).setHours(0, 0, 0, 0) < new Date(date).setHours(0, 0, 0, 0)
-      ).pop();
-    return firstPrevious ? new Date(firstPrevious.added_date) : false;    
+      ).shift();
+    return firstPrevious ? new Date(firstPrevious.added_date) : false;
   }
 
   getNextDate(date: Date) {
     let firstNext = this.getOrderedByDate()
       .filter(
-        item => !item.deleted && 
+        item => !item.deleted &&
         item.completed &&
         new Date(item.completion_date).setHours(0, 0, 0, 0) > new Date(date).setHours(0, 0, 0, 0)
       ).shift();
-    return firstNext ? new Date(firstNext.added_date) : false;    
+    return firstNext ? new Date(firstNext.added_date) : false;
   }
 }
