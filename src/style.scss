@@ -38,7 +38,7 @@ h4 {
 h2 {
     &.centered {
         color: $text-color;
-        text-align: center; 
+        text-align: center;
     }
 }
 
@@ -137,7 +137,7 @@ ul {
         position: fixed;
         left: 3em;
         top: 3em;
-        > .btn {
+        >.btn {
             margin-bottom: 1em;
             i {
                 font-size: 2.0em;
@@ -145,10 +145,10 @@ ul {
                 height: 1.5em;
                 line-height: 1.5em;
                 transition: all 0.2s ease;
-                box-shadow: 0 0 0 0 rgba(#000, 0.6); 
+                box-shadow: 0 0 0 0 rgba(#000, 0.6);
                 &:hover {
                     transform: scale(1.1);
-                    box-shadow: 0 0 12px 0 rgba(#000, 0.6); 
+                    box-shadow: 0 0 12px 0 rgba(#000, 0.6);
                 }
             }
             span {
@@ -219,7 +219,7 @@ ul {
                 transition: all 0.3s ease;
                 opacity: 0;
                 transform: translateY(-100%);
-                > span {
+                >span {
                     cursor: pointer;
                 }
             }
@@ -228,6 +228,28 @@ ul {
 }
 
 @media(max-width: $desktop-width) {
+    .globalNav {
+        position: fixed;
+        left: 0;
+        top: 0;
+        right: 0;
+        text-align: center;
+        background: $body-color;
+        z-index: 1000;
+        >.btn {
+            width: 30%;
+            display: inline-block;
+            background: $main-color;
+            color: $task-color;
+            padding: 0.3em;
+            margin: 0.1em;
+            i {
+                background: none;
+                color: $task-color;
+            }
+            
+        }
+    }
     ul {
         li {
             .actions {
@@ -237,7 +259,7 @@ ul {
                     display: table;
                     clear: both;
                 }
-                > span {
+                >span {
                     display: block;
                     text-align: center;
                     float: right;
@@ -250,7 +272,7 @@ ul {
             }
             &.completed {
                 .actions {
-                    > span {
+                    >span {
                         background: darken($task-complete-bg, 5);
                     }
                 }
